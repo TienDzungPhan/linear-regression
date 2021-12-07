@@ -21,7 +21,11 @@ def mean_square_error(w, X, y):
     #####################################################
     # TODO 1: Fill in your code here                    #
     #####################################################
-    err = None
+    err = 0
+
+    for n in range(len(X)):
+      err += np.square((np.transpose(X[n]) @ w) - y[n]) / len(X)
+
     return err
 
 ###### Part 1.2 ######
@@ -39,9 +43,7 @@ def linear_regression_noreg(X, y):
   #####################################################		
   X_T = np.transpose(X)
   covariance = np.matmul(X_T, X)
-
-  w = np.matmul(np.linalg.inv(covariance), X_T)
-  w = np.matmul(w, y)
+  w = np.linalg.inv(covariance) @ X_T @ y
 
   return w
 
