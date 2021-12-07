@@ -1,4 +1,5 @@
 import numpy as np
+from numpy.lib.function_base import append
 import pandas as pd
 
 ############################################################################
@@ -36,7 +37,12 @@ def linear_regression_noreg(X, y):
   #####################################################
   #	TODO 2: Fill in your code here                    #
   #####################################################		
-  w = None
+  X_T = np.transpose(X)
+  covariance = np.matmul(X_T, X)
+
+  w = np.matmul(np.linalg.inv(covariance), X_T)
+  w = np.matmul(w, y)
+
   return w
 
 
