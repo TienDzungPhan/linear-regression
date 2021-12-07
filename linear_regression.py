@@ -85,7 +85,7 @@ def tune_lambda(Xtrain, ytrain, Xval, yval):
     # TODO 5: Fill in your code here                    #
     #####################################################		
     lambdas = [1 / np.power(2, 15 - x) for x in range(1, 16)]
-    min_mse = 0
+    min_mse = np.inf
     bestlambda = lambdas[0]
     
     for lambd in lambdas:
