@@ -84,7 +84,7 @@ def tune_lambda(Xtrain, ytrain, Xval, yval):
     #####################################################
     # TODO 5: Fill in your code here                    #
     #####################################################		
-    lambdas = [1 / np.power(2, 15 - x) for x in np.arange(1, 16)]
+    lambdas = [1 / np.power(2, 15 - x) for x in range(1, 16)]
     min_mse = 0
     bestlambda = lambdas[0]
     
@@ -111,8 +111,13 @@ def mapping_data(X, p):
     #####################################################
     # TODO 6: Fill in your code here                    #
     #####################################################		
-    
-    return X
+    mapped_X = X
+
+    for k in range(2, p + 1):
+      X_power = [[np.power(x[i], k) for i in range(len(x))] for x in X]
+      mapped_X = np.insert(mapped_X, len(mapped_X[0]), np.transpose(X_power), axis = 1)
+   
+    return mapped_X
 
 """
 NO MODIFICATIONS below this line.
