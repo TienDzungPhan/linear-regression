@@ -1,5 +1,6 @@
 import numpy as np
-from numpy.lib.function_base import append
+from numpy.core.numeric import identity
+from numpy.lib.function_base import append, cov
 import pandas as pd
 
 ############################################################################
@@ -42,8 +43,7 @@ def linear_regression_noreg(X, y):
   #	TODO 2: Fill in your code here                    #
   #####################################################		
   X_T = np.transpose(X)
-  covariance = np.matmul(X_T, X)
-  w = np.linalg.inv(covariance) @ X_T @ y
+  w = np.linalg.inv(X_T @ X) @ X_T @ y
 
   return w
 
@@ -62,7 +62,11 @@ def regularized_linear_regression(X, y, lambd):
   #####################################################
   # TODO 4: Fill in your code here                    #
   #####################################################		
-    w = None
+    X_T = np.transpose(X)
+    covariance = X_T @ X
+    reg = lambd * np.identity(len(covariance))
+    w = np.linalg.inv(covariance + reg) @ X_T @ y
+
     return w
 
 ###### Part 1.4 ######
