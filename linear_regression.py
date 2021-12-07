@@ -84,7 +84,17 @@ def tune_lambda(Xtrain, ytrain, Xval, yval):
     #####################################################
     # TODO 5: Fill in your code here                    #
     #####################################################		
-    bestlambda = None
+    lambdas = [1 / np.power(2, 15 - x) for x in np.arange(1, 16)]
+    min_mse = 0
+    bestlambda = lambdas[0]
+    
+    for lambd in lambdas:
+      w = regularized_linear_regression(Xtrain, ytrain, lambd)
+      mse = mean_square_error(w, Xval, yval)
+      if mse < min_mse:
+        min_mse = mse
+        bestlambda = lambd
+
     return bestlambda
     
 
