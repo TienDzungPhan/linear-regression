@@ -46,21 +46,21 @@ mse = mean_square_error(w, Xtest, ytest)
 print("MSE on test is %.5f" % mse)
 
 
-# print("\n======== Part 1.5 ========")
-# power = 6
-# for i in range(2, power):
-#     Xtrain, ytrain, Xval, yval, Xtest, ytest = data_processing_linear_regression(filename, True, i)
-#     bestlambd = tune_lambda(Xtrain, ytrain, Xval, yval)
-#     print('best lambd is ' + str(bestlambd))
-#     w = regularized_linear_regression(Xtrain, ytrain, bestlambd)
-#     print('when power = ' + str(i))
-#     mse = mean_square_error(w, Xtrain, ytrain)
-#     print("MSE on train is %.5f" % mse)
-#     mse = mean_square_error(w, Xval, yval)
-#     print("MSE on val is %.5f" % mse)
-#     mse = mean_square_error(w, Xtest, ytest)
-#     print("MSE on test is %.5f" % mse)
-#     print("-----------------")
+print("\n======== Part 1.5 ========")
+power = 6
+for i in range(2, power):
+    Xtrain, ytrain, Xval, yval, Xtest, ytest = data_processing_linear_regression(filename, True, i)
+    bestlambd = tune_lambda(Xtrain, ytrain, Xval, yval)
+    print('best lambd is ' + str(bestlambd))
+    w = regularized_linear_regression(Xtrain, ytrain, bestlambd)
+    print('when power = ' + str(i))
+    mse = mean_square_error(w, Xtrain, ytrain)
+    print("MSE on train is %.5f" % mse)
+    mse = mean_square_error(w, Xval, yval)
+    print("MSE on val is %.5f" % mse)
+    mse = mean_square_error(w, Xtest, ytest)
+    print("MSE on test is %.5f" % mse)
+    print("-----------------")
 
 
 
